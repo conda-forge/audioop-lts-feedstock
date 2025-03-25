@@ -19,11 +19,11 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
   host:
-    - python {{ python_min }}
+    - python
     - setuptools
     - pip
   run:
-    - python >={{ python_min }}
+    - python
 
 test:
   imports:
@@ -33,7 +33,7 @@ test:
     # Verify that a basic audioop operation works as expected
     - python -c "import audioop; assert list(audioop.reverse(bytes([1,2,4,8]), 2)) == [4, 8, 1, 2]"
   requires:
-    - python {{ python_min }}
+    - python
     - pip
 
 about:
