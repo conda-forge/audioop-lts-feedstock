@@ -25,7 +25,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
   host:
-    {% if buid_script == 'noop' %}
+    {% if build_script == 'noop' %}
     - python <3.13
     {% else %}
     - python >=3.13
