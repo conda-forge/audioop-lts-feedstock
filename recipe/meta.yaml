@@ -14,6 +14,7 @@ build:
   {% if build_script == 'noop' %}
   number: {{ build_number | int * 2 + 1 }}
   script: bash {{ RECIPE_DIR }}/noop.sh
+  noarch: python
   {% else %}
   number: {{ build_number | int * 2 }}
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -25,7 +26,7 @@ requirements:
     - {{ stdlib('c') }}
   host:
     {% if buid_script == 'noop' %}
-    - python <=3.12
+    - python <3.13
     {% else %}
     - python >=3.13
     {% endif %}
@@ -33,7 +34,7 @@ requirements:
     - pip
   run:
     {% if build_script == 'noop' %}
-    - python <=3.12
+    - python <3.13
     {% else %}
     - python >=3.13
     {% endif %}
