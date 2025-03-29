@@ -14,7 +14,6 @@ build:
   {% if build_script == 'noop' %}
   number: {{ build_number | int * 2 + 1 }}
   script: bash {{ RECIPE_DIR }}/noop.sh
-  noarch: python
   {% else %}
   number: {{ build_number | int * 2 }}
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
