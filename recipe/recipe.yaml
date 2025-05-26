@@ -3,7 +3,6 @@ schema_version: 1
 context:
   name: audioop-lts
   version: 0.2.1
-  python_min: 3.13
 
 package:
   name: ${{ name|lower }}
@@ -15,27 +14,31 @@ source:
 
 build:
   number: 1
-  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - if: match(python, ">=3.13")
+      then: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
   host:
-    - python 3.13.*
+    - python
     - setuptools
     - pip
   run:
-    - python >=${{ python_min }}
+    - python
 
 tests:
   - python:
       imports:
         - audioop
-      python_version: ${{ python_min }}.*
   - requirements:
       run:
-        - python ${{ python_min }}.*
         - pip
     script:
       - pip check
