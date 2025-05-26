@@ -39,6 +39,7 @@ tests:
         - pip
     script:
       - pip check
+      - python -c "import audioop; assert list(audioop.reverse(bytes([1,2,4,8]), 2)) == [4, 8, 1, 2]"
 
 about:
   summary: LTS Port of Python audioop
