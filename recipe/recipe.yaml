@@ -13,7 +13,7 @@ source:
   sha256: 64d0c62d88e67b98a1a5e71987b7aa7b5bcffc7dcee65b635823dbdd0a8dbbd0
 
 build:
-  number: 1
+  number: 2
   script:
     - if: match(python, ">=3.13")
       then: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
